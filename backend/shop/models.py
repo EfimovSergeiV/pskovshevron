@@ -48,7 +48,7 @@ class ImageProductModel(models.Model):
 class ProductPropertyModel(models.Model):
     """ Модель свойств товара """
 
-    name = models.CharField(verbose_name='Название свойства', max_length=250)
+    name = models.CharField(verbose_name='Название свойства', max_length=250, null=True, blank=True)
     value = models.CharField(verbose_name='Значение свойства', max_length=200)
     product = models.ForeignKey(ProductModel, related_name="product_property", verbose_name="Свойство", on_delete=models.CASCADE)
 
