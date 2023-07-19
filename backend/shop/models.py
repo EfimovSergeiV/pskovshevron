@@ -7,6 +7,7 @@ class ProductModel(models.Model):
 
     activated = models.BooleanField(verbose_name='Показывать на сайте', default=True)
     title = models.CharField(verbose_name='Название товара', max_length=250)
+    price = models.PositiveIntegerField(verbose_name='Стоимость', default=0)
     description = models.TextField(verbose_name="Описание товара", max_length=5000)
 
     last_update = models.DateTimeField(verbose_name="Последнее обновление", auto_now=True)
