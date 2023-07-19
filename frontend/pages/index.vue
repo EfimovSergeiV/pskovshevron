@@ -4,6 +4,11 @@
   const router = useRouter()
 
   const { data: products } = await useFetch(`${ config.public.baseURL }s/prods/`)
+  const { data: products1 } = await useFetch(`${ config.public.baseURL }s/prods/`)
+  const { data: products2 } = await useFetch(`${ config.public.baseURL }s/prods/`)
+  const { data: products3 } = await useFetch(`${ config.public.baseURL }s/prods/`)
+  const { data: products4 } = await useFetch(`${ config.public.baseURL }s/prods/`)
+  const { data: products5 } = await useFetch(`${ config.public.baseURL }s/prods/`)
 
 // const scrollToTop = () => {
 //     window.scrollTo({ top: 0 })
@@ -74,7 +79,7 @@
               
               <div class="py-1 px-2">
                 <button >
-                  <h5 class="text-xl font-semibold tracking-tight text-gray-100">{{ product.title }}</h5>
+                  <nuxt-link :to="{ name: 'prod-id', params: { id: product.id}}" class="text-xl font-semibold tracking-tight text-gray-100">{{ product.title }}</nuxt-link>
                 </button>                    
               </div>
 
