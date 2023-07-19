@@ -25,7 +25,7 @@ class ImageProductModel(models.Model):
     """ Модель изображения товара """
 
     image = ResizedImageField(
-        size = [640, 640],
+        size = [520, 390],
         verbose_name="",
         crop = ['middle', 'center'],
         upload_to='product/images/',

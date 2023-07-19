@@ -29,7 +29,7 @@ class ProductImageInline(admin.TabularInline):
     readonly_fields = ('preview', )
 
     def preview(self, obj):
-        return mark_safe('<img style="margin-right: -20vh" src="/files/%s" alt="Нет изображения" width="80" height="80" />' % (obj.image))
+        return mark_safe('<img style="margin-right: -20vh" src="/files/%s" alt="Нет изображения" width="auto" height="80" />' % (obj.image))
 
     preview.short_description = 'Изображение'
     fieldsets = (
@@ -50,7 +50,7 @@ class ProductAdmin(admin.ModelAdmin):
     """ Страница редактирования товара """
 
     form = ProductAdminForm
-    list_display = ('id', 'title', 'price', 'last_update', 'activated')
+    list_display = ('id', 'title', 'price', 'activated', 'last_update',)
     list_display_links = ('id', 'title',)
     list_editable = ('activated', 'price',)
     search_fields = ('id', 'name',)
