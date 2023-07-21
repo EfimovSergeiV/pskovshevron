@@ -10,6 +10,8 @@
   const { data: products4 } = await useFetch(`${ config.public.baseURL }s/prods/`)
   const { data: products5 } = await useFetch(`${ config.public.baseURL }s/prods/`)
 
+  const textColor = ref('#111827')
+
 // const scrollToTop = () => {
 //     window.scrollTo({ top: 0 })
 //   }
@@ -26,8 +28,8 @@
 
 
 <template>
-  <div class="min-h-screen">
-  
+  <div class="min-h-screen text-gray-100">
+
 
     <!-- <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
       Toggle modal
@@ -70,6 +72,14 @@
 
 
     <div class="container mx-auto max-w-screen-xl">
+
+      <div class="">
+        <p class="text-xs">Цвет текста</p>
+        <input type="text" id="person" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block pl-2 py-1 w-[180px]  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-300 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Цвет текста">
+
+      </div>
+
+
       <div class="py-8">
 
         <div class="grid grid-cols-3 gap-8">
@@ -88,10 +98,10 @@
               </a>
 
               <div class="py-2 px-2">
-                
+                <div :class="'text-xs ' + `text-[${textColor}]` " v-html="product.description"></div>
               </div>
 
-              <div class="px-5 pb-5">
+              <div class="px-5 py-4">
 
                 <div class="flex items-center justify-between">
                     <span class="text-3xl font-bold text-white mdi mdi-currency-rub"> {{ product.price.toLocaleString() }}</span>
