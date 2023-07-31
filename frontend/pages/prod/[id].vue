@@ -39,8 +39,15 @@
                 <p class="text-2xl mdi mdi-currency-rub">
                   {{ product.price }}
                 </p>
-                <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-0 focus:outline-none focus:ring-blue-300/0 font-medium rounded-lg text-sm px-8 py-4 text-center transition-all">В корзину</a>
+                <button class="text-white bg-sky-600 focus:ring-0 focus:outline-none focus:ring-blue-300/0 font-medium rounded-lg text-sm px-8 py-2 text-center transition-all">В корзину</button>
+
               </div>
+            </div>
+            <div class=" flex items-center justify-end">
+              <a href="#" target="_blank" class="flex items-center gap-4 group relative w-[17rem]">
+                <p class="text-base font-semibold"> Приобрести на</p>
+                <img src="/wildberries.webp" class="h-[40px] group-hover:h-[42px] transition-all duration-100 absolute right-0" />
+              </a>
             </div>
 
             <div class="my-6">
