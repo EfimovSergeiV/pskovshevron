@@ -4,20 +4,20 @@
 <template>
   <div class="">
     <header>
-      <nav class="bg-gray-900/40">
+      <nav class="bg-gray-900/40 border-b border-white/10">
           <div class="flex justify-between items-center mx-auto max-w-screen-xl">
             <div class="py-2">
-              <nuxt-link :to="{ name: 'index' }" class="grid grid-cols-1 border-l-4 border-cyan-700 px-4">
-                <p class="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-700 to-blue-500 text-[26px] uppercase se lect-none">
+              <nuxt-link :to="{ name: 'index' }" class="grid grid-cols-1 border-l-4 border-sky-600 px-2">
+                <p class="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-sky-400 text-[26px] uppercase se lect-none">
                   pskovshevron.ru
                 </p>
-                <p class="text-sm texs-gray-100">Шевроны во Пскове по вашему дизайну</p>
+                <p class="text-sm text-gray-300 ">Шевроны в Пскове по вашему дизайну</p>
               </nuxt-link>
 
             </div>
 
-            <div class="bg-blue-500 px-6 py-2 rounded-3xl">
-              <nuxt-link :to="{ name: 'index', hash: '#get-custom-shevron', }" class="text-center text-sm font-semibold">Заказать свой дизайн</nuxt-link>
+            <div class="bg-gradient-to-br from-sky-700 to-sky-600 px-6 py-1.5 rounded-3xl">
+              <nuxt-link :to="{ name: 'index', hash: '#get-custom-shevron', }" class="text-center text-base font-semibold">Заказать свой дизайн</nuxt-link>
             </div>
 
           </div>

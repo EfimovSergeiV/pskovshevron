@@ -30,6 +30,22 @@
 <template>
   <div class="min-h-screen">
 
+    <div class="container mx-auto max-w-screen-xl">
+      <div class="py-4">
+        <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start">
+          
+          <button class="bg-gray-700 rounded-2xl px-16 py-1">
+            <p class="text-sm text-gray-100">Все шевроны</p>
+          </button>
+
+          <button v-for="i in 6" :key="i" class="bg-gray-700 rounded-2xl px-16 py-1">
+            <p class="text-sm text-gray-100">Категория {{ i }} </p>
+          </button>
+
+
+        </div>
+      </div>
+    </div>
 
     <div class="container mx-auto max-w-screen-xl">
       <div class="py-8">
@@ -55,7 +71,7 @@
 
                 <div class="flex items-center justify-between">
                     <span class="text-3xl font-bold text-white mdi mdi-currency-rub"> {{ product.price.toLocaleString() }}</span>
-                    <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-0 focus:outline-none focus:ring-blue-300/0 font-medium rounded-lg text-sm px-6 py-2 text-center transition-all">В корзину</a>
+                    <a href="#" class="text-white bg-gradient-to-br from-sky-700 to-sky-600 font-semibold focus:ring-0 focus:outline-none focus:ring-blue-300/0 rounded-lg text-sm px-6 py-2 text-center transition-all">В корзину</a>
                 </div>
               </div>
 

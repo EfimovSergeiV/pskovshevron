@@ -2,10 +2,27 @@ from django.db import models
 from django_resized import ResizedImageField
 
 
+
+class CategoryModel(models.Model):
+    """ Модель категории товара """
+
+    title = models.CharField(verbose_name="Название категории", max_length=200)
+
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
+    def __str__(self) -> str:
+        return self.title
+
+
+
 class ProductModel(models.Model):
     """ Модель товара """
-
+    
     activated = models.BooleanField(verbose_name='Показывать на сайте', default=True)
+    category = models.ManyToManyField(CategoryModel, related_name="category", verbose_name="Категории")
     title = models.CharField(verbose_name='Название товара', max_length=250)
     price = models.PositiveIntegerField(verbose_name='Стоимость', default=0)
     description = models.TextField(verbose_name="Описание товара", max_length=5000)
@@ -19,6 +36,9 @@ class ProductModel(models.Model):
 
     def __str__(self) -> str:
         return str(self.title)
+    
+
+    
     
 
 class ImageProductModel(models.Model):
@@ -79,3 +99,5 @@ class OrderModel(models.Model):
 
     def __str__(self) -> str:
         return f'Клиент: { self.client_name }'
+
+

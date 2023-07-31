@@ -4,6 +4,7 @@ from django.utils.safestring import mark_safe
 from ckeditor.widgets import CKEditorWidget
 
 from shop.models import (
+    CategoryModel,
     ProductModel, 
     ImageProductModel, 
     ProductPropertyModel, 
@@ -57,7 +58,7 @@ class ProductAdmin(admin.ModelAdmin):
     readonly_fields = ('last_update',)
     inlines = (ProductImageInline, ProductPropertyInline)
     fieldsets = (
-        (None, {'fields': (('title','activated'),('price',),('description', ),('last_update', ),)}),
+        (None, {'fields': (('title','activated'),('category', 'price',),('description', ),('last_update', ),)}),
     )
 
 
@@ -81,5 +82,6 @@ class OrderAdmin(admin.ModelAdmin):
 
 
 # Регистрация моделей в админке
+admin.site.register(CategoryModel,)
 admin.site.register(ProductModel, ProductAdmin)
 admin.site.register(OrderModel, OrderAdmin)
