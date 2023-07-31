@@ -3,12 +3,7 @@
   const route = useRoute()
   const router = useRouter()
 
-  const { data: products } = await useFetch(`${ config.public.baseURL }s/prods/`)
-  const { data: products1 } = await useFetch(`${ config.public.baseURL }s/prods/`)
-  const { data: products2 } = await useFetch(`${ config.public.baseURL }s/prods/`)
-  const { data: products3 } = await useFetch(`${ config.public.baseURL }s/prods/`)
-  const { data: products4 } = await useFetch(`${ config.public.baseURL }s/prods/`)
-  const { data: products5 } = await useFetch(`${ config.public.baseURL }s/prods/`)
+  const { data: product } = await useFetch(`${ config.public.baseURL }s/prod/${route.params.id}`)
 
 // const scrollToTop = () => {
 //     window.scrollTo({ top: 0 })
@@ -25,8 +20,48 @@
 </script>
 
 <template>
-  <div class="">
-     <p>product name id</p>
-     <p>{{ products }}</p>
+  <div class="min-h-screen flex items-center">
+
+
+    <div class="container mx-auto max-w-screen-xl">
+      <div class="flex items-start gap-8">
+        <div class="h-[28rem] w-[28rem]">
+          <img :src="product.product_images[0].image" class="rounded-md h-[16rem] w-[16rem]" />
+        </div>
+        <div class=" w-full">
+          <div class="grid grid-cols-1">
+            <div class="py-6">
+              <p class="text-2xl">{{ product.title }}</p>
+            </div>
+            <div class="" v-html="product.description"></div>
+            <div class="flex justify-end my-8">
+              <div class="flex items-center gap-20">
+                <p class="text-2xl mdi mdi-currency-rub">
+                  {{ product.price }}
+                </p>
+                <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-0 focus:outline-none focus:ring-blue-300/0 font-medium rounded-lg text-sm px-8 py-4 text-center transition-all">В корзину</a>
+              </div>
+            </div>
+
+            <div class="my-6">
+
+              <div v-for="property in product.product_properties" :key="property.id" class="flex items-center justify-between border-b border-gray-600 my-4">
+                <p class="">{{ property.name }}</p>
+                <p class="">{{ property.value }}</p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+    
+    
+
   </div>
 </template>

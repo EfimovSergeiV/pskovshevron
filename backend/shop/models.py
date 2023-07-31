@@ -25,7 +25,7 @@ class ImageProductModel(models.Model):
     """ Модель изображения товара """
 
     image = ResizedImageField(
-        size = [520, 390],
+        size = [800, 800],
         verbose_name="",
         crop = ['middle', 'center'],
         upload_to='product/images/',
@@ -39,7 +39,7 @@ class ImageProductModel(models.Model):
         verbose_name = 'Изображение'
         verbose_name_plural = 'Изображения товара'
 
-    product = models.ForeignKey(ProductModel, related_name="product_image", verbose_name="Изображение", on_delete=models.CASCADE)
+    product = models.ForeignKey(ProductModel, related_name="product_images", verbose_name="Изображение", on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return 'Изображение'
@@ -50,7 +50,7 @@ class ProductPropertyModel(models.Model):
 
     name = models.CharField(verbose_name='Название свойства', max_length=250, null=True, blank=True)
     value = models.CharField(verbose_name='Значение свойства', max_length=200)
-    product = models.ForeignKey(ProductModel, related_name="product_property", verbose_name="Свойство", on_delete=models.CASCADE)
+    product = models.ForeignKey(ProductModel, related_name="product_properties", verbose_name="Свойство", on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Свойство товара'

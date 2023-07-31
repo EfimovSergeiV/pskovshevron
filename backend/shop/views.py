@@ -32,3 +32,13 @@ class ListProductsView(ListAPIView):
         products_qs = ProductModel.objects.filter(activated=True)
         
         return products_qs
+    
+
+class ProductView(APIView):
+
+    def get(self, request, pk):
+        print(pk)
+        product_qs = ProductModel.objects.get( id=pk )
+        serializer = ProductSerializer( product_qs, context={'request':request} )
+
+        return Response(serializer.data)

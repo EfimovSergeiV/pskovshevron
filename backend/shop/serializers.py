@@ -25,8 +25,8 @@ class ImageProductSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     """ Сериализация товаров """
     
-    product_image = ImageProductSerializer( many=True )
-    product_property = ProductPropertySerializer( many=True )
+    product_images = ImageProductSerializer( many=True )
+    product_properties = ProductPropertySerializer( many=True )
 
     class Meta:
         model = ProductModel
