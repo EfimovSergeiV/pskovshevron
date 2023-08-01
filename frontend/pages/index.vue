@@ -2,6 +2,7 @@
   const config = useRuntimeConfig()
   const route = useRoute()
   const router = useRouter()
+  const shopStore = useShopStore()
 
   const { data: categories } = await useFetch(`${ config.public.baseURL }s/ct/`)
   const { data: products } = await useFetch(`${ config.public.baseURL }s/prods/`)
@@ -58,7 +59,6 @@
     </div>
 
 
-
     <div class="container mx-auto px-8 max-w-screen-xl">
       <div v-if="pages.length > 1" class="flex items-center justify-end">
 
@@ -112,7 +112,17 @@
 
                   <div class="flex items-center justify-between">
                       <span class="text-3xl font-bold text-white mdi mdi-currency-rub"> {{ product.price.toLocaleString() }}</span>
-                      <a href="#" class="text-white bg-gradient-to-br from-sky-700 to-sky-600 font-semibold focus:ring-0 focus:outline-none focus:ring-blue-300/0 rounded-lg text-sm px-6 py-2 text-center transition-all">В корзину</a>
+                      <button @click="shopStore.addProduct(product)" class="text-white bg-gradient-to-br from-sky-700 to-sky-600 font-semibold focus:ring-0 focus:outline-none focus:ring-blue-300/0 rounded-lg text-sm w-28 py-2 text-center transition-all">
+                        <transition name="fade" mode="out-in">
+                          <div v-if="shopStore.productInCart(product.id)" class="">
+                            <p class="">В корзине</p>
+                          </div>
+                          <div v-else class="">
+                            <p class="">Купить</p>
+                          </div>
+                        </transition>
+                        
+                      </button>
                   </div>
                 </div>
 

@@ -2,6 +2,7 @@
   const config = useRuntimeConfig()
   const route = useRoute()
   const router = useRouter()
+  const shopStore = useShopStore()
 
   const { data: categories } = await useFetch(`${ config.public.baseURL }s/ct/`)
   const { data: product } = await useFetch(`${ config.public.baseURL }s/prod/${route.params.id}`)
@@ -20,10 +21,10 @@
   <div class="min-h-screen flex items-center py-8">
 
 
-    <div class="container mx-auto max-w-screen-xl">
+    <div class="container mx-auto px-8 max-w-screen-xl">
 
 
-      <div class="flex items-start justify-between py-2">
+      <div class="grid grid-cols-1 gap-4 md:flex items-start justify-between py-2">
         <div>
           <nuxt-link :to="{ name: 'index' }">Вернуться на главную</nuxt-link>
         </div>
@@ -41,10 +42,10 @@
         </div>
       </div>
 
-      <div class="flex items-start">
+      <div class="grid grid-cols-1 gap-4 md:flex items-start">
         
-        <div class="h-[28rem] w-[28rem]">
-          <img :src="product.product_images[0].image" class="rounded-md h-[16rem] w-[16rem] border border-white/20" />
+        <div class="md:h-[28rem] md:w-[28rem]">
+          <img :src="product.product_images[0].image" class="rounded-md md:h-[16rem] md:w-[16rem] border border-white/20" />
         </div>
 
         <div class=" w-full">
@@ -67,6 +68,19 @@
                   
                   
                   <button class="text-white uppercase font-semibold bg-gradient-to-br from-sky-700 to-sky-600 focus:ring-0 focus:outline-none focus:ring-blue-300/0 rounded-lg text-sm px-8 py-4 text-center transition-all">Добавить в корзину</button>
+                
+                  <button @click="shopStore.addProduct(product)" class="text-white bg-gradient-to-br from-sky-700 to-sky-600 font-semibold focus:ring-0 focus:outline-none focus:ring-blue-300/0 rounded-lg text-sm w-28 py-2 text-center transition-all">
+                    <transition name="fade" mode="out-in">
+                      <div v-if="shopStore.productInCart(product.id)" class="">
+                        <p class="">В корзине</p>
+                      </div>
+                      <div v-else class="">
+                        <p class="">Купить</p>
+                      </div>
+                    </transition>
+                    
+                  </button>
+                
                 </div>
               </div>
              
