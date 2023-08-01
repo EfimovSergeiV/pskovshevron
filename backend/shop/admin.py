@@ -8,7 +8,8 @@ from shop.models import (
     ProductModel, 
     ImageProductModel, 
     ProductPropertyModel, 
-    OrderModel
+    OrderModel,
+    OrderProductModel,
 )
 
 
@@ -68,22 +69,29 @@ class ProductAdmin(admin.ModelAdmin):
     )
 
 
+
+
+class OrderProductInline(admin.TabularInline):
+    """ Вложенные свойства товара """
+
+    model = OrderProductModel
+    def preview(self, obj):
+        return mark_safe('<img style="" src="%s" alt="Нет изображения" width="auto" height="80" />' % (obj.image))
+
+
+    fields =  ('prod_id', 'preview', 'title', 'price','quantity')
+    readonly_fields = ('prod_id', 'preview', 'title', 'price','quantity')
+    extra = 0
+
 class OrderAdmin(admin.ModelAdmin):
     """ Отображение заказов в админке """
-    
 
-    def preview(self, obj):
-        return mark_safe('<img style="" src="/files/%s" alt="Нет изображения" width="auto" height="120" />' % (obj.image))
-
-    preview.short_description = ''
-    readonly_fields = ('preview', 'client_name', 'contact_data', 'created_data', 'comment', 'products', 'image',)
+    readonly_fields = ('client_name','contact_data')
     list_display = ('id', 'client_name', 'contact_data', 'created_data')
     list_display_links = ('id', 'client_name',)
-
+    inlines = ( OrderProductInline, )
     fieldsets = (
-        ('Данные клиента', {'fields': (('client_name','contact_data'),('comment', ),)}),
-        ('Данные заказа', {'fields': (('products',),)}),
-        ('Кастомный заказ', {'fields': (( 'image', 'preview',),)}),
+        ('Данные клиента', {'fields': (('client_name','contact_data'),)}),
     )
 
 

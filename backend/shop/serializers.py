@@ -5,6 +5,7 @@ from shop.models import (
     ImageProductModel,
     ProductPropertyModel,
     OrderModel,
+    OrderProductModel,
 )
 
 
@@ -39,3 +40,28 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductModel
         fields = ( 'id', 'title', 'description', 'wildberries', 'price', 'product_images', 'product_properties','category' )
+
+
+
+class OrderProductSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = OrderProductModel
+        fields = ('prod_id','image','title','price','quantity')
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    order_products = OrderProductSerializer( many=True )
+
+    class Meta:
+        model = OrderModel
+        fields = ( 'client_name', 'contact_data', 'order_products')
+
+
+    def create(self, validated_data):
+        order_products = validated_data.pop('order_products')
+        print('\n\n\FFF',order_products)
+        order = OrderModel.objects.create(**validated_data)
+        for product in order_products:
+            OrderProductModel.objects.create(order = order, **product)
+        return order

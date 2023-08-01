@@ -88,10 +88,7 @@ class OrderModel(models.Model):
 
     client_name = models.CharField(verbose_name='Клиент', max_length=300)
     contact_data = models.CharField(verbose_name='Контакты клиента', max_length=300)
-    comment = models.TextField(verbose_name='Комментарий к заказу', max_length=1000)
-
-    image = models.ImageField(verbose_name='Изображение',upload_to='order/images/', help_text='Если кастомный заказ', null=True, blank=True)
-    products = models.JSONField(verbose_name='Заказанные товары', null=True, blank=True)
+    # comment = models.TextField(verbose_name='Комментарий к заказу', max_length=1000)
 
     created_data = models.DateTimeField(verbose_name="Дата создания", auto_now=True)
 
@@ -101,5 +98,21 @@ class OrderModel(models.Model):
 
     def __str__(self) -> str:
         return f'Клиент: { self.client_name }'
+    
 
+class OrderProductModel(models.Model):
+    """ Товары заказанные клиентом """
 
+    order = models.ForeignKey(OrderModel, related_name="order_products", on_delete=models.CASCADE)
+    prod_id = models.PositiveIntegerField(verbose_name="Идентификатор")
+    image = models.URLField(verbose_name="Изображение")
+    title = models.CharField(verbose_name="Название", max_length=250)
+    price = models.PositiveIntegerField(verbose_name="Стоимость")
+    quantity = models.PositiveIntegerField(verbose_name="Кол-во")
+
+    class Meta:
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товары'
+
+    def __str__(self) -> str:
+        return self.title

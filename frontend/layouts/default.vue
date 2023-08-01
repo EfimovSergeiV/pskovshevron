@@ -1,5 +1,6 @@
 <script setup>
   import { initFlowbite } from 'flowbite'
+  const config = useRuntimeConfig()
   const shopStore = useShopStore()
   // initialize components based on data attribute selectors
   onMounted(() => {
@@ -27,6 +28,31 @@
     }
 
   })
+
+  const client = ref({
+    name: null,
+    contact: null,
+  })
+
+  const sendOrder = async () => {
+    if ( ( client.value.name ) && ( client.value.contact ) ) {
+      const { data: response } = await useFetch(`${ config.public.baseURL }s/order/`, {
+        method: 'POST',
+        body: {
+          client: client.value,
+          products: shopStore.cart,
+        }
+        
+      });
+
+      // order.value = await response.value
+      // productsStore.clearCartProducts()
+      // clientStore.saveClientData(clientData)
+
+    } else {
+      console.log('message err ')
+    }
+  }
 
 </script>
 
@@ -58,9 +84,9 @@
                 <div class="p-6 space-y-6">
 
                   <div class="w-full">
-                    <div class="">
+                    <div class="text-gray-700">
 
-                      <div class="grid gap-2 px-1 text-gray-700">
+                      <div class="grid gap-2 px-1 ">
                         <transition-group tag="div" name="fade">
                           <div v-for="product in shopStore.cart" :key="product.id" class="my-4">
                             <div class="flex items-center gap-2">
@@ -99,7 +125,7 @@
                                   <div class="w-4 h-4 text-gray-500 dark:text-gray-400 mdi mdi-contacts"></div>
                                 </div>
                               </div>
-                              <input type="text" id="email-address-icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-500 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Иван Иванов">
+                              <input v-model="client.name" type="text" id="email-address-icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-500 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Иван Иванов">
                             </div>              
                           </div>
 
@@ -109,7 +135,7 @@
                               <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
                                 <div class="w-4 h-4 text-gray-500 dark:text-gray-400 mdi mdi-contacts"></div>
                               </div>
-                              <input type="text" id="email-address-icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-500 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@mail.ru или 89121234567">
+                              <input v-model="client.contact"  type="text" id="email-address-icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-500 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@mail.ru или 89121234567">
                             </div>
                           </div>
 
@@ -126,7 +152,7 @@
                 </div>
 
                 <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                    <button type="button" class="text-white bg-gradient-to-br from-sky-700 to-sky-600 focus:ring-0 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all">Отправить</button>
+                    <button @click="sendOrder()" type="button" class="text-white bg-gradient-to-br from-sky-700 to-sky-600 focus:ring-0 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all">Отправить</button>
                     <button data-modal-hide="staticModal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Закрыть окно</button>
                 </div>
             </div>
