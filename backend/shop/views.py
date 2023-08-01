@@ -22,18 +22,6 @@ class ProductsPagination(PageNumberPagination):
     page_size = 36
 
 
-class ListProductsView(ListAPIView):
-    """ Список товаров """
-
-    serializer_class = ProductSerializer
-    pagination_class = ProductsPagination
-
-    def get_queryset(self, *args, **kwargs):
-        products_qs = ProductModel.objects.filter(activated=True)
-        
-        return products_qs
-    
-
 class CategoriesView(APIView):
 
     def get(self, request):
@@ -42,6 +30,23 @@ class CategoriesView(APIView):
 
         return Response(serializer.data)
 
+
+class ListProductsView(ListAPIView):
+    """ Список товаров """
+
+    serializer_class = ProductSerializer
+    pagination_class = ProductsPagination
+    qs = ProductModel.objects.filter(activated=True)
+
+    def get_queryset(self, *args, **kwargs):
+        props = dict(self.request.query_params)
+        if 'ct' in props.keys():
+            products_qs = self.qs.filter(category__in=props['ct'])
+        else:
+            products_qs = self.qs
+        
+        return products_qs
+    
 
 class ProductView(APIView):
 

@@ -37,19 +37,20 @@
 
 
 <template>
-  <div class="min-h-screen">
+  <div class="min-h-screen py-4">
 
     <div class="container mx-auto max-w-screen-xl">
       <div class="py-4">
         <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start">
           
-          <button class="bg-gray-700 rounded-2xl px-16 py-1">
+          <nuxt-link :to="{ name: 'index'}" class="bg-gray-700 rounded-2xl px-16 py-1">
             <p class="text-sm text-gray-100">Все шевроны</p>
-          </button>
+          </nuxt-link>
 
-          <button v-for="category in categories" :key="category.id" class="bg-gray-700 rounded-2xl px-16 py-1">
+          <nuxt-link :to="{ name: 'index', query: { ct: category.id ,page: 1}}" v-for="category in categories" :key="category.id" class="bg-gray-700 rounded-2xl px-16 py-1">
+            
             <p class="text-sm text-gray-100">Категория {{ category.title }} </p>
-          </button>
+          </nuxt-link>
 
 
         </div>
@@ -59,22 +60,22 @@
 
 
     <div class="container mx-auto max-w-screen-xl">
-      <div v-if="pages.length > 1" class="">
+      <div v-if="pages.length > 1" class="flex items-center justify-end">
 
         <ul class="flex items-center gap-0.5 font-semibold">
           <li>
-            <nuxt-link :to="{ name: 'index', query: {...route.query, page: 1 }}" class="w-8 h-8 flex items-center justify-center text-gray-500  rounded-l-sm border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+            <nuxt-link :to="{ name: 'index', query: {...route.query, page: 1 }}" class="w-8 h-8 flex items-center justify-center  rounded-l-sm border  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">
               &lt;
             </nuxt-link>
           </li>
           <li v-for="(page, pk) in pages" :key="pk">
             <nuxt-link :to="{ name: 'index', query: { ...route.query, page: page }}">
-              <div v-if="Number(current) === Number(page)" class="w-8 h-8 flex items-center justify-center text-gray-700 bg-blue-50 border border-gray-300 hover:bg-blue-100 hover:text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white">{{ page }}</div>
-              <div v-else class="w-8 h-8 flex items-center justify-center text-gray-500  rounded-r-sm border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{{ page }}</div>
+              <div v-if="Number(current) === Number(page)" class="w-8 h-8 flex items-center justify-center  border border-gray-600 bg-gray-700 text-white">{{ page }}</div>
+              <div v-else class="w-8 h-8 flex items-center justify-center  rounded-r-sm border  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">{{ page }}</div>
             </nuxt-link>
           </li>
           <li>
-            <nuxt-link :to="{ name: 'index', query: {...route.query, page: Math.ceil(products.count/36)}}" class="w-8 h-8 flex items-center justify-center text-gray-500  rounded-r-sm border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+            <nuxt-link :to="{ name: 'index', query: {...route.query, page: Math.ceil(products.count/36)}}" class="w-8 h-8 flex items-center justify-center  rounded-r-sm border  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">
               &gt;
             </nuxt-link>
           </li>
@@ -86,7 +87,7 @@
 
 
     <div class="container mx-auto max-w-screen-xl">
-      <div class="py-8">
+      <div class="py-4">
         <div class="grid grid-cols-4 gap-2">
           <transition-group name="fade">
             <div v-for="product in products.results" :key="product.id">
@@ -122,28 +123,29 @@
       </div>
     </div>
 
-    <div v-if="pages.length > 1" class="">
+    <div class="container mx-auto max-w-screen-xl ">
+      <div v-if="pages.length > 1" class="flex items-center justify-end">
 
-      <ul class="flex items-center gap-0.5 font-semibold">
-        <li>
-          <nuxt-link :to="{ name: 'index', query: {...route.query, page: 1 }}" class="w-8 h-8 flex items-center justify-center text-gray-500  rounded-l-sm border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-            &lt;
-          </nuxt-link>
-        </li>
-        <li v-for="(page, pk) in pages" :key="pk">
-          <nuxt-link :to="{ name: 'index', query: { ...route.query, page: page }}">
-            <div v-if="Number(current) === Number(page)" class="w-8 h-8 flex items-center justify-center text-gray-700 bg-blue-50 border border-gray-300 hover:bg-blue-100 hover:text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white">{{ page }}</div>
-            <div v-else class="w-8 h-8 flex items-center justify-center text-gray-500  rounded-r-sm border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{{ page }}</div>
-          </nuxt-link>
-        </li>
-        <li>
-          <nuxt-link :to="{ name: 'index', query: {...route.query, page: Math.ceil(products.count/36)}}" class="w-8 h-8 flex items-center justify-center text-gray-500  rounded-r-sm border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-            &gt;
-          </nuxt-link>
-        </li>
-      </ul>
+        <ul class="flex items-center gap-0.5 font-semibold">
+          <li>
+            <nuxt-link :to="{ name: 'index', query: {...route.query, page: 1 }}" class="w-8 h-8 flex items-center justify-center  rounded-l-sm border  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">
+              &lt;
+            </nuxt-link>
+          </li>
+          <li v-for="(page, pk) in pages" :key="pk">
+            <nuxt-link :to="{ name: 'index', query: { ...route.query, page: page }}">
+              <div v-if="Number(current) === Number(page)" class="w-8 h-8 flex items-center justify-center  border border-gray-600 bg-gray-700 text-white">{{ page }}</div>
+              <div v-else class="w-8 h-8 flex items-center justify-center  rounded-r-sm border  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">{{ page }}</div>
+            </nuxt-link>
+          </li>
+          <li>
+            <nuxt-link :to="{ name: 'index', query: {...route.query, page: Math.ceil(products.count/36)}}" class="w-8 h-8 flex items-center justify-center  rounded-r-sm border  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">
+              &gt;
+            </nuxt-link>
+          </li>
+        </ul>
 
+        </div>
     </div>
-
   </div>
 </template>
