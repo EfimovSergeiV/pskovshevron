@@ -39,7 +39,7 @@
 <template>
   <div class="min-h-screen py-4">
 
-    <div class="container mx-auto max-w-screen-xl">
+    <div class="container mx-auto px-8 max-w-screen-xl">
       <div class="py-4">
         <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start">
           
@@ -59,7 +59,7 @@
 
 
 
-    <div class="container mx-auto max-w-screen-xl">
+    <div class="container mx-auto px-8 max-w-screen-xl">
       <div v-if="pages.length > 1" class="flex items-center justify-end">
 
         <ul class="flex items-center gap-0.5 font-semibold">
@@ -86,12 +86,12 @@
 
 
 
-    <div class="container mx-auto max-w-screen-xl">
+    <div class="container mx-auto px-8 max-w-screen-xl">
       <div class="py-4">
-        <div v-if="products.results.length > 0" class="grid grid-cols-4 gap-2">
+        <div v-if="products.results.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
           <transition-group name="fade">
             <div v-for="product in products.results" :key="product.id">
-              <div class="w-full max-w-sm border rounded-lg shadow bg-gray-800 border-gray-700">
+              <div class="w-full md:max-w-sm border rounded-lg shadow bg-gray-800 border-gray-700">
                 
                 <nuxt-link :to="{ name: 'prod-id', params: { id: product.id}}">
                   <img v-if="product.product_images.length > 0" class=" rounded-t-lg" :src="product.product_images[0].image" alt="product image" />
@@ -126,7 +126,7 @@
       </div>
     </div>
 
-    <div class="container mx-auto max-w-screen-xl ">
+    <div class="container mx-auto px-8 max-w-screen-xl">
       <div v-if="pages.length > 1" class="flex items-center justify-end">
 
         <ul class="flex items-center gap-0.5 font-semibold">

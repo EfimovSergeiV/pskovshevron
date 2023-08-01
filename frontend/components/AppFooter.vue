@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <footer class=" bg-gray-900/60 border-t border-white/10">
-      <div id="get-custom-shevron" class="mx-auto max-w-screen-lg text-center">
+      <div id="get-custom-shevron" class="mx-auto px-8 max-w-screen-lg text-center">
         
         <div class=" py-8">
           <a href="#" class="flex justify-center items-center text-2xl font-semibold text-gray-500 dark:text-gray-500">

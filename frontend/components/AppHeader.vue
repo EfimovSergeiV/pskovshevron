@@ -1,8 +1,8 @@
 <template>
   <div class="">
     <header>
-      <nav class="bg-gray-900/40 border-b border-white/10">
-        <div class="flex justify-between items-center mx-auto max-w-screen-xl">
+      <nav class="bg-gray-900/40 border-b border-white/10 ">
+        <div class="flex justify-between items-center mx-auto px-8 max-w-screen-xl">
           <div class="py-2">
             <nuxt-link :to="{ name: 'index' }" class="grid grid-cols-1 border-l-4 border-sky-500 px-2">
               <p class="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-sky-400 text-[26px] uppercase se lect-none">
