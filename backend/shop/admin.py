@@ -46,6 +46,12 @@ class ProductPropertyInline(admin.TabularInline):
     extra = 0
 
 
+class CategoryAdmin(admin.ModelAdmin):
+
+    list_display = ( 'id', 'title', 'ordering', )
+    list_display_links = ( 'id', 'title', )
+    list_editable = ('ordering', )
+
 
 class ProductAdmin(admin.ModelAdmin):
     """ Страница редактирования товара """
@@ -58,7 +64,7 @@ class ProductAdmin(admin.ModelAdmin):
     readonly_fields = ('last_update',)
     inlines = (ProductImageInline, ProductPropertyInline)
     fieldsets = (
-        (None, {'fields': (('title','activated'),('category', 'price',),('description', ),('last_update', ),)}),
+        (None, {'fields': (('title','activated'),('wildberries', 'price',), ('category',),('description', ),('last_update', ),)}),
     )
 
 
@@ -82,6 +88,6 @@ class OrderAdmin(admin.ModelAdmin):
 
 
 # Регистрация моделей в админке
-admin.site.register(CategoryModel,)
+admin.site.register(CategoryModel, CategoryAdmin)
 admin.site.register(ProductModel, ProductAdmin)
 admin.site.register(OrderModel, OrderAdmin)

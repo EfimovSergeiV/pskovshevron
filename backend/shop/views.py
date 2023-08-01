@@ -5,8 +5,8 @@ from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
 from rest_framework.pagination import PageNumberPagination
 
-from shop.models import ProductModel
-from shop.serializers import ProductSerializer
+from shop.models import ProductModel, CategoryModel
+from shop.serializers import ProductSerializer, CategorySerializer
 
 
 
@@ -34,10 +34,19 @@ class ListProductsView(ListAPIView):
         return products_qs
     
 
+class CategoriesView(APIView):
+
+    def get(self, request):
+        categories_qs = CategoryModel.objects.all()
+        serializer = CategorySerializer( categories_qs, many=True, context={'request':request} )
+
+        return Response(serializer.data)
+
+
 class ProductView(APIView):
 
     def get(self, request, pk):
-        print(pk)
+
         product_qs = ProductModel.objects.get( id=pk )
         serializer = ProductSerializer( product_qs, context={'request':request} )
 

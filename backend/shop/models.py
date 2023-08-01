@@ -7,11 +7,12 @@ class CategoryModel(models.Model):
     """ Модель категории товара """
 
     title = models.CharField(verbose_name="Название категории", max_length=200)
-
+    ordering = models.PositiveIntegerField(verbose_name="Приоритет выдачи", default=1)
 
     class Meta:
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
+        ordering = [ 'id', 'ordering', ]
 
     def __str__(self) -> str:
         return self.title
@@ -22,8 +23,9 @@ class ProductModel(models.Model):
     """ Модель товара """
     
     activated = models.BooleanField(verbose_name='Показывать на сайте', default=True)
-    category = models.ManyToManyField(CategoryModel, related_name="category", verbose_name="Категории")
+    category = models.ManyToManyField(CategoryModel, related_name="category", verbose_name="Категории", blank=True)
     title = models.CharField(verbose_name='Название товара', max_length=250)
+    wildberries = models.URLField(verbose_name="Ссылка на Wildberries", null=True, blank=True)
     price = models.PositiveIntegerField(verbose_name='Стоимость', default=0)
     description = models.TextField(verbose_name="Описание товара", max_length=5000)
 
@@ -69,7 +71,7 @@ class ProductPropertyModel(models.Model):
     """ Модель свойств товара """
 
     name = models.CharField(verbose_name='Название свойства', max_length=250, null=True, blank=True)
-    value = models.CharField(verbose_name='Значение свойства', max_length=200)
+    value = models.CharField(verbose_name='Значение свойства', max_length=200, null=True, blank=True)
     product = models.ForeignKey(ProductModel, related_name="product_properties", verbose_name="Свойство", on_delete=models.CASCADE)
 
     class Meta:
