@@ -6,18 +6,14 @@
   const { data: categories } = await useFetch(`${ config.public.baseURL }s/ct/`)
   const { data: product } = await useFetch(`${ config.public.baseURL }s/prod/${route.params.id}`)
 
-// const scrollToTop = () => {
-//     window.scrollTo({ top: 0 })
-//   }
-
-//   watch(() => route.fullPath, async (fullPath) => {
-//       const { data: prods }  = await useFetch(`${ config.public.baseURL }c/prods/`, { params: route.query })
-//       const { data: crumbs } = await useFetch(`${ config.public.baseURL }c/breadcrumb/`, { params: route.query })
-//       products.value = ( await prods.value )
-//       breadcrumbs.value = ( await crumbs.value )
-//       scrollToTop()
-//     }
-//   )
+  useSeoMeta({
+    title: `Псков Шеврон - ${product.value.title}`,
+    ogTitle: `Псков Шеврон - ${product.value.title}`,
+    description: product.value.description,
+    ogDescription: product.description,
+    ogImage: product.value.product_images[0].image,
+    twitterCard: product.value.product_images[0].image,
+  })
 </script>
 
 <template>

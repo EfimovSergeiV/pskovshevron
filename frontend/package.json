@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "@mdi/font": "^7.2.96",
-    "flowbite": "^1.7.0"
+    "@pinia/nuxt": "^0.4.11",
+    "flowbite": "^1.7.0",
+    "pinia": "^2.1.6"
   }
 }

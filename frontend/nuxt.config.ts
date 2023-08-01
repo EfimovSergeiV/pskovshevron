@@ -4,14 +4,19 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'pskovshevron.ru - Купить шевроны во Пскове',
+      title: 'Псков Шеврон - Шевроны в Пскове по вашему дизайну',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { 
           hid: 'description', 
           name: 'description', 
-          content: 'pskovshevron.ru - Купить шевроны во Пскове вдарыорвоарловыраыл' 
+          content: 'pskovshevron - Купить и изготовить шевроны во Пскове' 
+        },
+        { 
+          hid: 'keywords', 
+          name: 'keywords', 
+          content: 'Псков, Шевроны, Купить, Изготовить' 
         },
         { name: 'format-detection', content: 'telephone=yes' }
       ],
@@ -22,19 +27,20 @@ export default defineNuxtConfig({
 
     pageTransition: { name: 'page', mode: 'out-in' },
 
-    // pageTransition: {
-    //   name: 'fade',
-    //   mode: 'out-in' // default
-    // },
-    // layoutTransition: {
-    //   name: 'slide',
-    //   mode: 'out-in' // default
-    // }
   },
 
   modules: [
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@pinia/nuxt',
   ],
+
+  pinia: {
+    autoImports: [
+      // automatically imports `defineStore`
+      'defineStore', // import { defineStore } from 'pinia'
+      ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
+    ],
+  },
 
   css: [
     '~/assets/css/main.css',
