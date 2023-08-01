@@ -18,7 +18,7 @@
 </script>
 
 <template>
-  <div class="min-h-screen flex items-center py-8">
+  <div class="min-h-screen flex items-center py-8 select-none">
 
 
     <div class="container mx-auto px-8 max-w-screen-xl">

@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class=" select-none">
     <footer class=" bg-gray-900/60 border-t border-white/10">
       <div id="get-custom-shevron" class="mx-auto px-8 max-w-screen-lg text-center">
         
@@ -7,14 +7,14 @@
           <a href="#" class="flex justify-center items-center text-2xl font-semibold text-gray-500 dark:text-gray-500">
               <p class="">Псков Шеврон</p>
           </a>
-          <p class="my-4 text-gray-400 dark:text-gray-400">Не нашли что искали? Мы изготовим шеврон по вашему дизайну. Для этого заполните форму ниже и мы с вами свяжемся!</p>
+          <p class="my-4 text-gray-400 dark:text-gray-400 select-none">Не нашли что искали? Мы изготовим шеврон по вашему дизайну. Для этого заполните форму ниже и мы с вами свяжемся!</p>
 
         </div>
           
         <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8 py-4">
 
           <div class="">
-            <label for="email-address-icon" class="block mb-2 text-sm font-medium text-gray-500">Как вас зовут?</label>
+            <label for="email-address-icon" class="block mb-2 text-sm font-medium text-gray-500 select-none">Как вас зовут?</label>
             <div class="relative">
               <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
@@ -26,7 +26,7 @@
           </div>
 
           <div class="">
-            <label for="email-address-icon" class="block mb-2 text-sm font-medium text-gray-500">Как с вами связаться?</label>
+            <label for="email-address-icon" class="block mb-2 text-sm font-medium text-gray-500 select-none">Как с вами связаться?</label>
             <div class="relative">
               <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
                 <div class="w-4 h-4 text-gray-500 dark:text-gray-400 mdi mdi-contacts"></div>
