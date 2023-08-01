@@ -44,7 +44,7 @@
       <div class="py-4">
         <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start">
           
-          <nuxt-link :to="{ name: 'index'}" class="bg-gray-700 rounded-2xl px-8 py-1">
+          <nuxt-link :to="{ name: 'index'}" class="bg-gray-700 rounded-2xl px-14 py-1">
             <p class="text-sm text-gray-100">Все шевроны</p>
           </nuxt-link>
 
@@ -87,37 +87,38 @@
 
     <div class="container mx-auto px-8 max-w-screen-xl">
       <div class="py-4">
-        <div v-if="products.results.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
+        <div v-if="products.results.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           <transition-group name="fade">
             <div v-for="product in products.results" :key="product.id">
               <div class="w-full md:max-w-sm border rounded-lg shadow bg-gray-800 border-gray-700">
                 
                 <nuxt-link :to="{ name: 'prod-id', params: { id: product.id}}">
-                  <img v-if="product.product_images.length > 0" class=" rounded-t-lg" :src="product.product_images[0].image" alt="product image" />
+                  <img v-if="product.product_images.length > 0" class=" rounded-t-lg select-none" :src="product.product_images[0].image" alt="product image" />
                   <div v-else class=" rounded-t-lg h-[312px]"></div>
                 </nuxt-link>
 
                 <div class="py-2 px-2">
 
-                    <nuxt-link :to="{ name: 'prod-id', params: { id: product.id}}" class="text-lg font-semibold tracking-tight">{{ product.title }}</nuxt-link>
+                    <nuxt-link :to="{ name: 'prod-id', params: { id: product.id}}" class="text-lg font-semibold tracking-tight select-none">{{ product.title }}</nuxt-link>
                   
                 </div>
 
-                <div class="px-2">
-                  <div :class="'text-xs ' + `text-[${textColor}]` " v-html="product.description.slice(0, 160)"></div>
+                <div class="px-2 flex">
+                  <div v-if="product.description.length > 160" class="text-xs select-none" v-html="product.description.slice(0, 160) + '...'"></div>
+                  <div v-else class="text-xs" v-html="product.description"></div>
                 </div>
 
                 <div class="px-5 py-4">
 
                   <div class="flex items-center justify-between">
-                      <span class="text-3xl font-bold text-white mdi mdi-currency-rub"> {{ product.price.toLocaleString() }}</span>
+                      <span class="text-3xl font-bold text-white mdi mdi-currency-rub select-none"> {{ product.price.toLocaleString() }}</span>
                       <button @click="shopStore.addProduct(product)" class="text-white bg-gradient-to-br from-sky-700 to-sky-600 font-semibold focus:ring-0 focus:outline-none focus:ring-blue-300/0 rounded-lg text-sm w-28 py-2 text-center transition-all">
                         <transition name="fade" mode="out-in">
                           <div v-if="shopStore.productInCart(product.id)" class="">
-                            <p class="">В корзине</p>
+                            <p class=" select-none">В корзине</p>
                           </div>
                           <div v-else class="">
-                            <p class="">Купить</p>
+                            <p class=" select-none">Купить</p>
                           </div>
                         </transition>
                         
@@ -130,7 +131,7 @@
           </transition-group>
         </div>
         <div v-else class="flex min-h-screen items-center justify-center">
-          <p>Ничего не найдено</p>
+          <p class="text-2xl">Ничего не найдено</p>
         </div>
       </div>
     </div>

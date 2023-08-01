@@ -23,7 +23,7 @@
           <div class="flex gap-6 items-center justify-end">
             <div class="">
               <button data-modal-target="staticModal" data-modal-toggle="staticModal" class="text-sm font-semibold uppercase" type="button">
-                Корзина ({{ shopStore.cart.length }})
+                Корзина ( {{ shopStore.cart.length }} )
               </button>
             </div>
 

@@ -56,17 +56,78 @@
                 </div>
                 <!-- Modal body -->
                 <div class="p-6 space-y-6">
-                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                      {{ shopStore.cart }}
-                    </p>
-                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                        The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
-                    </p>
+
+                  <div class="overflow-x-auto w-full">
+                    <div class="">
+
+                      <div class="grid gap-2 px-1 text-gray-700">
+                        <transition-group tag="div" name="fade">
+                          <div v-for="product in shopStore.cart" :key="product.id" class="my-4">
+                            <div class="flex items-center gap-2">
+                              <div class="flex justify-center items-center w-24 bg-white rounded-sm">
+                                <img :src="product.product_images[0].image" class="rounded-sm w-20" />
+                              </div>
+                              <div class="flex justify-center w-1/2">
+                                <p class="text-sm">{{ product.title }}</p>
+                              </div>
+                              <div class="flex justify-center w-32">
+                                <button  @click="shopStore.changeQuantity(product, 'del')" class="mdi mdi-minus cursor-pointer"></button>
+                                <div class="mx-2"><p>{{ product.quantity }}</p></div>
+                                <button @click="shopStore.changeQuantity(product, 'add')" class="mdi mdi-plus cursor-pointer"></button>
+                              </div>
+
+                              <div class="flex justify-center w-32"><p class="text-sm">{{ product.price.toLocaleString() }} руб/шт</p></div>
+                              <div class="flex justify-center w-20">
+                                <!-- <button @click="productsStore.addProduct('cart', product)" class="mdi mdi-24px mdi-close cursor-pointer"></button> -->
+                              </div>
+                              
+                            </div>
+                            
+                          </div>
+                        </transition-group>
+                      </div>
+
+
+                      <div class="">
+                        <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8 py-4">
+
+                          <div class="">
+                            <label for="email-address-icon" class="block mb-2 text-sm font-medium text-gray-500">Как вас зовут?</label>
+                            <div class="relative">
+                              <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                  <div class="w-4 h-4 text-gray-500 dark:text-gray-400 mdi mdi-contacts"></div>
+                                </div>
+                              </div>
+                              <input type="text" id="email-address-icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-500 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Иван Иванов">
+                            </div>              
+                          </div>
+
+                          <div class="">
+                            <label for="email-address-icon" class="block mb-2 text-sm font-medium text-gray-500">Как с вами связаться?</label>
+                            <div class="relative">
+                              <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                <div class="w-4 h-4 text-gray-500 dark:text-gray-400 mdi mdi-contacts"></div>
+                              </div>
+                              <input type="text" id="email-address-icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-500 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@mail.ru или 89121234567">
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+                
+                
+                
+                
                 </div>
-                <!-- Modal footer -->
+
                 <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                    <button data-modal-hide="staticModal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
-                    <button data-modal-hide="staticModal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Decline</button>
+                    <button type="button" class="text-white bg-gradient-to-br from-sky-700 to-sky-600 focus:ring-0 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all">Отправить</button>
+                    <button data-modal-hide="staticModal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Закрыть окно</button>
                 </div>
             </div>
         </div>

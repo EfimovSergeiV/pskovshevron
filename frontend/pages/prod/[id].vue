@@ -37,9 +37,9 @@
         
         <div v-for="category in categories" :key="category">
           <div v-if="product.category.includes(category.id)" class="bg-gray-700 rounded-2xl px-10 py-1">
-            <nuxt-link :to="{ name: 'index', query: { ct: category.id ,page: 1}}" class="">
+            <div :to="{ name: 'index', query: { ct: category.id}}" class="">
               <p class="text-sm text-gray-100">{{ category.title }} </p>
-            </nuxt-link>
+            </div>
           </div>
         </div>
 
@@ -68,7 +68,7 @@
                 </a>
               </div> 
               <div class="flex justify-end">
-                <div class="flex items-center gap-20">
+                <div class="flex items-center gap-10">
                   <div class="flex items-center gap-2">
                     <p class="text-2xl font-semibold">{{ product.price }}</p>
                     <div class=" mdi mdi-24px mdi-currency-rub"></div>
