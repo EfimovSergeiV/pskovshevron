@@ -44,13 +44,12 @@
       <div class="py-4">
         <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start">
           
-          <nuxt-link :to="{ name: 'index'}" class="bg-gray-700 rounded-2xl px-16 py-1">
+          <nuxt-link :to="{ name: 'index'}" class="bg-gray-700 rounded-2xl px-8 py-1">
             <p class="text-sm text-gray-100">Все шевроны</p>
           </nuxt-link>
 
-          <nuxt-link :to="{ name: 'index', query: { ct: category.id ,page: 1}}" v-for="category in categories" :key="category.id" class="bg-gray-700 rounded-2xl px-16 py-1">
-            
-            <p class="text-sm text-gray-100">Категория {{ category.title }} </p>
+          <nuxt-link :to="{ name: 'index', query: { ct: category.id ,page: 1}}" v-for="category in categories" :key="category.id" class="bg-gray-700 rounded-2xl px-12 py-1">
+            <p class="text-sm text-gray-100">{{ category.title }} </p>
           </nuxt-link>
 
 

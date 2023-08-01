@@ -34,12 +34,20 @@
       </div>
 
       <div class="flex items-center justify-end gap-0.5 py-2">
+        
         <div v-for="category in categories" :key="category">
-          <button  v-if="product.category.includes(category.id)" class="bg-gray-700 rounded-2xl px-10 py-1">
-            <p class="text-sm">{{ category.title }}</p>
-          </button>
-          
+          <div v-if="product.category.includes(category.id)" class="bg-gray-700 rounded-2xl px-10 py-1">
+            <nuxt-link :to="{ name: 'index', query: { ct: category.id ,page: 1}}" class="">
+              <p class="text-sm text-gray-100">{{ category.title }} </p>
+            </nuxt-link>
+          </div>
         </div>
+
+
+        <!-- <nuxt-link :to="{ name: 'index', query: { ct: category.id ,page: 1}}" v-for="category in categories" :key="category.id" class="bg-gray-700 rounded-2xl px-16 py-1">
+          <p class="text-sm text-gray-100">Категория {{ category.title }} </p>
+        </nuxt-link> -->
+
       </div>
 
       <div class="grid grid-cols-1 gap-4 md:flex items-start">
