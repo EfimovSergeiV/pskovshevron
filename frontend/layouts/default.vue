@@ -57,7 +57,7 @@
                 <!-- Modal body -->
                 <div class="p-6 space-y-6">
 
-                  <div class="overflow-x-auto w-full">
+                  <div class="w-full">
                     <div class="">
 
                       <div class="grid gap-2 px-1 text-gray-700">
@@ -77,8 +77,8 @@
                               </div>
 
                               <div class="flex justify-center w-32"><p class="text-sm">{{ product.price.toLocaleString() }} руб/шт</p></div>
-                              <div class="flex justify-center w-20">
-                                <!-- <button @click="productsStore.addProduct('cart', product)" class="mdi mdi-24px mdi-close cursor-pointer"></button> -->
+                              <div class="flex justify-center">
+                                <button @click="shopStore.addProduct(product)" class="mdi mdi-24px mdi-close cursor-pointer"></button>
                               </div>
                               
                             </div>
