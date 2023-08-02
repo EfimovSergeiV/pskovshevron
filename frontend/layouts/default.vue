@@ -39,7 +39,8 @@
       const { data: response } = await useFetch(`${ config.public.baseURL }s/order/`, {
         method: 'POST',
         body: {
-          client: client.value,
+          name: client.value.name,
+          contact: client.value.contact,
           products: shopStore.cart,
         }
         

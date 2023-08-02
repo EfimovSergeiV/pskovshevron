@@ -89,7 +89,7 @@ class OrderModel(models.Model):
     client_name = models.CharField(verbose_name='Клиент', max_length=300)
     contact_data = models.CharField(verbose_name='Контакты клиента', max_length=300)
     # comment = models.TextField(verbose_name='Комментарий к заказу', max_length=1000)
-
+    image_for_custom = models.ImageField(verbose_name="Ссылка на изображение", upload_to='order/images/',)
     created_data = models.DateTimeField(verbose_name="Дата создания", auto_now=True)
 
     class Meta:

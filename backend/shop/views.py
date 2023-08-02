@@ -1,12 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.core.files.storage import FileSystemStorage
+
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.parsers import FileUploadParser
 
-from shop.models import ProductModel, CategoryModel
+from shop.models import ProductModel, CategoryModel, OrderModel
 from shop.serializers import ProductSerializer, CategorySerializer, OrderSerializer
 
 
@@ -60,43 +63,41 @@ class ProductView(APIView):
     
 
 class OrderView(APIView):
+    """ Обработка заказов """
 
     def post(self, request):
-        print(request.data)
-
-        products_qs = ProductModel.objects.filter(id__in=[product['id'] for product in request.data['products'] ])
-        # print('/////',products_qs)
+        
+        filename = False
+        if "image_for_custom" in request.FILES.keys():
+            fs = FileSystemStorage()
+            filename = fs.save(f'order/images/{request.FILES["image_for_custom"].name}', request.FILES["image_for_custom"])
 
         order_products = []
-        for product in request.data['products']:
 
-            # print('Q',product)
-            order_products.append({
-                "prod_id": product['id'],
-                "image": product['product_images'][0]['image'],
-                "title": product['title'],
-                "price": products_qs.get(id=product['id']).price, #   Защита от подмены стоимости
-                "quantity": product['quantity'],
-            })
-
+        if 'products' in request.data.keys():
+            products_qs = ProductModel.objects.filter(id__in=[product['id'] for product in request.data['products'] ])
+            for product in request.data['products']:
+                order_products.append({
+                    "prod_id": product['id'],
+                    "image": product['product_images'][0]['image'],
+                    "title": product['title'],
+                    "price": products_qs.get(id=product['id']).price, #   Защита от подмены стоимости
+                    "quantity": product['quantity'],
+                })
 
         data = {
-            'client_name': request.data['client']['name'],
-            'contact_data': request.data['client']['contact'],
-            'order_products': order_products,
+            'client_name': request.data['name'],
+            'contact_data': request.data['contact'],
+            'order_products': order_products
         }
-
-        print(f"DATA: { data }")
 
         serializer = OrderSerializer(data=data)
 
         if serializer.is_valid():
-            print('SERIALIZER VALID')
-            serializer.save()
+            order = serializer.save()
+            if filename:
+                OrderModel.objects.filter(id=order.id).update(image_for_custom=filename)
 
-
-
-            return Response('serializer.data')
+            return Response(status=status.HTTP_201_CREATED)
         else:
-            print(serializer.errors)
             return Response(status=status.HTTP_400_BAD_REQUEST)

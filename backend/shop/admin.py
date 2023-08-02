@@ -83,15 +83,23 @@ class OrderProductInline(admin.TabularInline):
     readonly_fields = ('prod_id', 'preview', 'title', 'price','quantity')
     extra = 0
 
+
 class OrderAdmin(admin.ModelAdmin):
     """ Отображение заказов в админке """
+    def preview(self, obj):
+        if obj.image_for_custom:
+            return mark_safe('<img style="" src="/files/%s" alt="Нет изображения" width="auto" height="120" />' % (obj.image_for_custom))
+        else:
+            return mark_safe('<p>-</p>')
+    preview.short_description = 'Изображение'
 
-    readonly_fields = ('client_name','contact_data')
+    readonly_fields = ('client_name','contact_data', 'preview', 'image_for_custom')
     list_display = ('id', 'client_name', 'contact_data', 'created_data')
     list_display_links = ('id', 'client_name',)
     inlines = ( OrderProductInline, )
     fieldsets = (
         ('Данные клиента', {'fields': (('client_name','contact_data'),)}),
+        ('Дизайн клиента', {'fields': (('preview', 'image_for_custom',),)})
     )
 
 

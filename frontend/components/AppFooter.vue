@@ -1,3 +1,44 @@
+<script setup>
+const config = useRuntimeConfig()
+
+
+const client = ref({
+  name: null,
+  contact: null
+})
+const file = ref(null)
+
+const onFileChange = (event) => {
+  file.value = event.target.files[0]
+  console.log(event)
+}
+
+const sendOrder = async () => {
+    if ( ( client.value.name ) && ( client.value.contact ) ) {
+      console.log(file.value)
+
+      const formData = new FormData()
+      formData.append("name", client.value.name)
+      formData.append("contact", client.value.contact)
+      formData.append("image_for_custom", file.value)
+
+      const { data: response } = await useFetch(`${ config.public.baseURL }s/order/`, {
+        method: 'POST',
+        body: formData        
+      });
+
+      // order.value = await response.value
+      // productsStore.clearCartProducts()
+      // clientStore.saveClientData(clientData)
+
+    } else {
+      console.log('message err ')
+    }
+  }
+
+</script>
+
+
 <template>
   <div class=" select-none">
     <footer class=" bg-gray-900/60 border-t border-white/10">
@@ -21,7 +62,7 @@
                   <div class="w-4 h-4 text-gray-500 dark:text-gray-400 mdi mdi-contacts"></div>
                 </div>
               </div>
-              <input type="text" id="email-address-icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-500 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Иван Иванов">
+              <input v-model="client.name" type="text" id="email-address-icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-500 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Иван Иванов">
             </div>              
           </div>
 
@@ -31,7 +72,7 @@
               <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
                 <div class="w-4 h-4 text-gray-500 dark:text-gray-400 mdi mdi-contacts"></div>
               </div>
-              <input type="text" id="email-address-icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-500 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@mail.ru или 89121234567">
+              <input v-model="client.contact" type="text" id="email-address-icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-500 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@mail.ru или 89121234567">
             </div>
           </div>
 
@@ -40,14 +81,14 @@
         <div class="flex items-center justify-center ">
           <div class="my-4 w-2/3">
             <label class="block mb-2 text-sm font-medium text-gray-500" for="user_avatar">Изображение вашего дизайна</label>
-            <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
+            <input @change="onFileChange" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
           </div>
         </div>
 
 
 
         <div class="">
-          <button class="bg-gradient-to-br from-sky-700 to-sky-600 px-24 py-2 rounded-3xl font-semibold">Отправить</button>
+          <button @click="sendOrder()" class="bg-gradient-to-br from-sky-700 to-sky-600 px-24 py-2 rounded-3xl font-semibold">Отправить</button>
         </div>
       </div>
 

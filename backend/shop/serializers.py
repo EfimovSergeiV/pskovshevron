@@ -60,7 +60,6 @@ class OrderSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         order_products = validated_data.pop('order_products')
-        print('\n\n\FFF',order_products)
         order = OrderModel.objects.create(**validated_data)
         for product in order_products:
             OrderProductModel.objects.create(order = order, **product)
