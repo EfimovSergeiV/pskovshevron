@@ -17,7 +17,7 @@ from shop.serializers import ProductSerializer, CategorySerializer, OrderSeriali
 class MainPageView(APIView):
     """    Главная страница API """
     def get(self, request):
-        html = "<html><body><h1> API PSKOVSHEVRON.RU</h1><br /><a href='http://127.0.0.1:8000/admin/'> Перейти в админ панель</body></html>"
+        html = "<html><body><h1> API PSKOVSHEVRON.RU</h1><br /><a href='/admin/'> Перейти в админ панель</body></html>"
         return HttpResponse(html)
 
 
