@@ -55,12 +55,18 @@ class ListProductsView(ListAPIView):
 class ProductView(APIView):
 
     def get(self, request, pk):
-
         product_qs = ProductModel.objects.get( id=pk )
         serializer = ProductSerializer( product_qs, context={'request':request} )
-
         return Response(serializer.data)
     
+
+class RelatedView(APIView):
+
+    def get(self, request, pk):
+        product_qs = ProductModel.objects.filter(category=pk).order_by('?')[0:8]
+        serializer = ProductSerializer( product_qs, many=True, context={'request':request} )
+        return Response(serializer.data)
+
 
 class OrderView(APIView):
     """ Обработка заказов """

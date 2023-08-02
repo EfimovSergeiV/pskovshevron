@@ -58,7 +58,7 @@ const sendOrder = async () => {
             <div class="relative">
               <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                  <div class="w-4 h-4 text-gray-500 dark:text-gray-400 mdi mdi-contacts"></div>
+                  <div class="w-4 h-4 text-gray-500 dark:text-gray-400 mdi mdi-account mb-1.5"></div>
                 </div>
               </div>
               <input v-model="client.name" type="text" id="email-address-icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-500 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Иван Иванов">
@@ -69,7 +69,7 @@ const sendOrder = async () => {
             <label for="email-address-icon" class="block mb-2 text-sm font-medium text-gray-500 select-none">Как с вами связаться?</label>
             <div class="relative">
               <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
-                <div class="w-4 h-4 text-gray-500 dark:text-gray-400 mdi mdi-contacts"></div>
+                <div class="w-4 h-4 text-gray-500 dark:text-gray-400 mdi mdi-contacts mb-1.5"></div>
               </div>
               <input v-model="client.contact" type="text" id="email-address-icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-500 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@mail.ru или 89121234567">
             </div>

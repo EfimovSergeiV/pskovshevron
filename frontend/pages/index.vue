@@ -44,11 +44,11 @@
       <div class="py-4">
         <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start">
           
-          <nuxt-link :to="{ name: 'index'}" class="bg-gray-700 rounded-2xl px-14 py-1">
+          <nuxt-link :to="{ name: 'index'}" class="bg-gray-700 shadow-lg shadow-black/30 rounded-2xl px-14 py-1">
             <p class="text-sm text-gray-100">Все шевроны</p>
           </nuxt-link>
 
-          <nuxt-link :to="{ name: 'index', query: { ct: category.id ,page: 1}}" v-for="category in categories" :key="category.id" class="bg-gray-700 rounded-2xl px-12 py-1">
+          <nuxt-link :to="{ name: 'index', query: { ct: category.id ,page: 1}}" v-for="category in categories" :key="category.id" class="bg-gray-700 shadow-lg shadow-black/30 rounded-2xl px-12 py-1">
             <p class="text-sm text-gray-100">{{ category.title }} </p>
           </nuxt-link>
 
@@ -90,7 +90,7 @@
         <div v-if="products.results.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           <transition-group name="fade">
             <div v-for="product in products.results" :key="product.id">
-              <div class="w-full md:max-w-sm border rounded-lg shadow bg-gray-800 border-gray-700">
+              <div class="w-full md:max-w-sm border rounded-lg shadow-lg shadow-black/30 bg-gray-800 border-gray-700">
                 
                 <nuxt-link :to="{ name: 'prod-id', params: { id: product.id}}">
                   <img v-if="product.product_images.length > 0" class=" rounded-t-lg select-none" :src="product.product_images[0].image" alt="product image" />

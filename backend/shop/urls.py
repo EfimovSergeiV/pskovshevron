@@ -20,12 +20,14 @@ from shop.views import (
     ListProductsView, 
     ProductView, 
     CategoriesView, 
-    OrderView
+    OrderView,
+    RelatedView,
 )
 
 urlpatterns = [
     path('ct/', CategoriesView.as_view()),
     re_path('prods/', ListProductsView.as_view()),
     path('prod/<int:pk>/', ProductView.as_view()),
+    path('related/<int:pk>/', RelatedView.as_view()),
     path('order/', OrderView.as_view()),
 ]
