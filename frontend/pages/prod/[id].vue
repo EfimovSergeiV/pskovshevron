@@ -30,7 +30,7 @@
         <div>
 
           <nuxt-link :to="{ name: 'index' }" class="">
-            <p class="text-sm text-gray-100 bg-gray-700 rounded-2xl px-4 py-1">Вернуться на главную </p>
+            <p class="text-sm text-gray-100 bg-gray-700 rounded-2xl shadow-lg shadow-black/30 px-4 py-1">Вернуться на главную </p>
           </nuxt-link>
         </div>
         <div class="">

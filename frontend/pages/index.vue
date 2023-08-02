@@ -112,7 +112,7 @@
 
                   <div class="flex items-center justify-between">
                       <span class="text-3xl font-bold text-white mdi mdi-currency-rub select-none"> {{ product.price.toLocaleString() }}</span>
-                      <button @click="shopStore.addProduct(product)" class="text-white bg-gradient-to-br from-sky-700 to-sky-600 font-semibold focus:ring-0 focus:outline-none focus:ring-blue-300/0 rounded-lg text-sm w-28 py-2 text-center transition-all">
+                      <button @click="shopStore.addProduct(product)" class="text-white bg-gradient-to-br from-sky-700 to-sky-600 font-semibold focus:ring-0 focus:outline-none focus:ring-blue-300/0 rounded-lg text-sm w-28 py-2 text-center shadow-lg shadow-black/30 transition-all">
                         <transition name="fade" mode="out-in">
                           <div v-if="shopStore.productInCart(product.id)" class="">
                             <p class=" select-none">В корзине</p>
