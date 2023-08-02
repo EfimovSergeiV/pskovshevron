@@ -26,7 +26,10 @@
 
       <div class="grid grid-cols-1 gap-4 md:flex items-start justify-between py-2">
         <div>
-          <nuxt-link :to="{ name: 'index' }">Вернуться на главную</nuxt-link>
+
+          <nuxt-link :to="{ name: 'index' }" class="">
+            <p class="text-sm text-gray-100 bg-gray-700 rounded-2xl px-8 py-1">Вернуться на главную </p>
+          </nuxt-link>
         </div>
         <div class="">
           <p class="text-2xl font-semibold">{{ product.title }}</p>
@@ -42,11 +45,6 @@
             </div>
           </div>
         </div>
-
-
-        <!-- <nuxt-link :to="{ name: 'index', query: { ct: category.id ,page: 1}}" v-for="category in categories" :key="category.id" class="bg-gray-700 rounded-2xl px-16 py-1">
-          <p class="text-sm text-gray-100">Категория {{ category.title }} </p>
-        </nuxt-link> -->
 
       </div>
 
@@ -75,7 +73,7 @@
                   </div>
                   
                   
-                  <!-- <button class="text-white uppercase font-semibold bg-gradient-to-br from-sky-700 to-sky-600 focus:ring-0 focus:outline-none focus:ring-blue-300/0 rounded-lg text-sm px-8 py-4 text-center transition-all">Добавить в корзину</button> -->
+                  <button @click="shopStore.addToast('Ваш заказ успешно принят', 'success')" class="text-white uppercase font-semibold bg-gradient-to-br from-sky-700 to-sky-600 focus:ring-0 focus:outline-none focus:ring-blue-300/0 rounded-lg text-sm px-8 py-4 text-center transition-all">Добавить </button>
                 
                   <button @click="shopStore.addProduct(product)" class="text-white uppercase font-semibold bg-gradient-to-br from-sky-700 to-sky-600 focus:ring-0 focus:outline-none focus:ring-blue-300/0 rounded-lg text-sm w-44 py-3 text-center transition-all">
                     <transition name="fade" mode="out-in">
