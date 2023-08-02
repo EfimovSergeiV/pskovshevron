@@ -28,7 +28,7 @@
         <div>
 
           <nuxt-link :to="{ name: 'index' }" class="">
-            <p class="text-sm text-gray-100 bg-gray-700 rounded-2xl px-8 py-1">Вернуться на главную </p>
+            <p class="text-sm text-gray-100 bg-gray-700 rounded-2xl px-4 py-1">Вернуться на главную </p>
           </nuxt-link>
         </div>
         <div class="">
@@ -72,9 +72,7 @@
                     <div class=" mdi mdi-24px mdi-currency-rub"></div>
                   </div>
                   
-                  
-                  <button @click="shopStore.addToast('Ваш заказ успешно принят', 'success')" class="text-white uppercase font-semibold bg-gradient-to-br from-sky-700 to-sky-600 focus:ring-0 focus:outline-none focus:ring-blue-300/0 rounded-lg text-sm px-8 py-4 text-center transition-all">Добавить </button>
-                
+                                  
                   <button @click="shopStore.addProduct(product)" class="text-white uppercase font-semibold bg-gradient-to-br from-sky-700 to-sky-600 focus:ring-0 focus:outline-none focus:ring-blue-300/0 rounded-lg text-sm w-44 py-3 text-center transition-all">
                     <transition name="fade" mode="out-in">
                       <div v-if="shopStore.productInCart(product.id)" class="">

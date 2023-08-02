@@ -1,6 +1,6 @@
 <script setup>
 const config = useRuntimeConfig()
-
+const shopStore = useShopStore()
 
 const client = ref({
   name: null,
@@ -14,7 +14,7 @@ const onFileChange = (event) => {
 }
 
 const sendOrder = async () => {
-    if ( ( client.value.name ) && ( client.value.contact ) ) {
+    if ( ( client.value.name ) && ( client.value.contact ) && ( file.value ) ) {
       console.log(file.value)
 
       const formData = new FormData()
@@ -27,12 +27,11 @@ const sendOrder = async () => {
         body: formData        
       });
 
-      // order.value = await response.value
-      // productsStore.clearCartProducts()
-      // clientStore.saveClientData(clientData)
+      shopStore.addToast("Ваш заказ успешно принят!", 'success')
+      file.value = null
 
     } else {
-      console.log('message err ')
+      shopStore.addToast("Заполните контактные данные и прикрипите изображение", 'error')
     }
   }
 

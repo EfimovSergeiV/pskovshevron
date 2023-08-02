@@ -21,6 +21,7 @@ export const useShopStore = defineStore('ShopStore', {
     state: () => ({
       cart: [] as Product[],
       toasts: [] as Toast[],
+      cartmodal: false,
     }),
     getters: {
       productInCart: (state) => (id: number) => {
@@ -39,6 +40,11 @@ export const useShopStore = defineStore('ShopStore', {
           this.cart.splice(index, 1)
         }
 
+      },
+
+      clearProducts() {
+        console.log('dsfgdkgkdjfghjkdfhkj')
+        this.cart = []
       },
 
       /// Изменение кол-ва товаров в корзине
@@ -65,7 +71,7 @@ export const useShopStore = defineStore('ShopStore', {
           this.toasts.shift()
         }, 5000)
 
-      }
+      },
 
     },
   })
