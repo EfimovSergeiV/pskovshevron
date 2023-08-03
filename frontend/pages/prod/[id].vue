@@ -62,7 +62,7 @@
             <div class="border rounded-lg bg-gray-800 border-gray-700 shadow-lg shadow-black/30 px-4 py-4">
               <div class="" v-html="product.description"></div>
               <div class=" flex items-center justify-end py-6">
-                <a href="#" target="_blank" class="flex items-center gap-4 group relative w-[14rem]">
+                <a :href="product.wildberries" target="_blank" class="flex items-center gap-4 group relative w-[14rem]">
                   <p class="text-sm uppercase font-semibold"> Приобрести на</p>
                   <img src="/wildberries.webp" class="w-[100px] group-hover:w-[105px] transition-all duration-300 absolute right-0" />
                 </a>
