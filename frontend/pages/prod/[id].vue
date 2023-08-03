@@ -115,26 +115,26 @@
       </div>
 
 
-      <div class="grid grid-cols-4 mt-4">
+      <div class="grid grid-cols-4 gap-4 mt-4">
         <div class="" v-for="prod in related" :key="prod.id">
         
           <div class="border rounded-lg shadow-lg shadow-black/30 bg-gray-800 border-gray-700">
             <div class="flex items-center gap-1">
-              <div class="">
+              <nuxt-link :to="{ name: 'prod-id', params: { id: prod.id}}">
                 <img :src="prod.product_images[0].image" class=" rounded-l-lg md:w-[12rem]" />
-              </div>
+              </nuxt-link>
               <div class="px-2 w-[26rem]">
                 <div class="grid grid-cols-1 gap-4">
                   <div class="">
-                    <nuxt-link :to="{ name: 'prod-id', params: { id: product.id}}">
+                    <nuxt-link :to="{ name: 'prod-id', params: { id: prod.id}}">
                       <p class="text-xs">{{ prod.title }}</p>
                     </nuxt-link>
                   </div>
                   <div class="flex items-end justify-end">
                     
-                    <button @click="shopStore.addProduct(product)" class="text-white bg-gradient-to-br from-sky-700 to-sky-600 focus:ring-0 focus:outline-none focus:ring-blue-300/0 rounded-md text-sm w-24 py-1 text-center transition-all">
+                    <button @click="shopStore.addProduct(prod)" class="text-white bg-gradient-to-br from-sky-700 to-sky-600 focus:ring-0 focus:outline-none focus:ring-blue-300/0 rounded-md text-sm w-24 py-1 text-center transition-all">
                       <transition name="fade" mode="out-in">
-                        <div v-if="shopStore.productInCart(product.id)" class="">
+                        <div v-if="shopStore.productInCart(prod.id)" class="">
                           <p class="text-xs">В корзине</p>
                         </div>
                         <div v-else class="">
