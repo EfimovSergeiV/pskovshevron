@@ -115,22 +115,27 @@
       </div>
 
 
-      <div class="grid grid-cols-4 gap-4 mt-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
         <div class="" v-for="prod in related" :key="prod.id">
         
           <div class="border rounded-lg shadow-lg shadow-black/30 bg-gray-800 border-gray-700">
             <div class="flex items-center gap-1">
               <nuxt-link :to="{ name: 'prod-id', params: { id: prod.id}}">
-                <img :src="prod.product_images[0].image" class=" rounded-l-lg md:w-[12rem]" />
+                <img :src="prod.product_images[0].image" class=" rounded-l-lg w-[10rem] md:w-[12rem]" />
               </nuxt-link>
               <div class="px-2 w-[26rem]">
-                <div class="grid grid-cols-1 gap-4">
-                  <div class="">
+                <div class="grid grid-cols-1 content-between h-full gap-4">
+                  <div class="py-1">
                     <nuxt-link :to="{ name: 'prod-id', params: { id: prod.id}}">
                       <p class="text-xs">{{ prod.title }}</p>
                     </nuxt-link>
                   </div>
-                  <div class="flex items-end justify-end">
+                  <div class="flex items-end gap-4 justify-end">
+
+                    <div class="flex gap-1 items-center">
+                      <div class=" mdi mdi-16px mdi-currency-rub"></div>
+                      <p class="text-sm font-semibold">{{ prod.price }}</p>
+                    </div>
                     
                     <button @click="shopStore.addProduct(prod)" class="text-white bg-gradient-to-br from-sky-700 to-sky-600 focus:ring-0 focus:outline-none focus:ring-blue-300/0 rounded-md text-sm w-24 py-1 text-center transition-all">
                       <transition name="fade" mode="out-in">
