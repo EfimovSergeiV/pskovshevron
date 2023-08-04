@@ -30,7 +30,7 @@
         <div>
 
           <nuxt-link :to="{ name: 'index' }" class="">
-            <p class="text-sm text-gray-100 bg-gray-700 rounded-2xl shadow-lg shadow-black/30 px-4 py-1">Вернуться на главную </p>
+            <p class="text-sm text-center text-gray-100 bg-gray-700 rounded-2xl shadow-lg shadow-black/30 px-4 py-1 border border-white/10 md:px-14 md:py-1">Вернуться на главную </p>
           </nuxt-link>
         </div>
         <div class="">
@@ -41,7 +41,7 @@
       <div class="flex items-center justify-end gap-0.5 py-2">
         
         <div v-for="category in categories" :key="category">
-          <div v-if="product.category.includes(category.id)" class="bg-gray-700 rounded-2xl px-10 py-1 shadow-lg shadow-black/30">
+          <div v-if="product.category.includes(category.id)" class="bg-gray-700 border border-white/10 shadow-lg shadow-black/30 rounded-2xl px-4 py-0.5 md:px-14 md:py-1">
             <div :to="{ name: 'index', query: { ct: category.id}}" class="">
               <p class="text-sm text-gray-100">{{ category.title }} </p>
             </div>

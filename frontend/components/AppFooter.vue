@@ -35,6 +35,10 @@ const sendOrder = async () => {
     }
   }
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth", })
+  }
+
 </script>
 
 
@@ -44,9 +48,9 @@ const sendOrder = async () => {
       <div id="get-custom-shevron" class="mx-auto px-8 max-w-screen-lg text-center">
         
         <div class=" py-8">
-          <a href="#" class="flex justify-center items-center text-2xl font-semibold text-gray-500 dark:text-gray-500">
-              <p class="">Псков Шеврон</p>
-          </a>
+          <div class="flex justify-center items-center text-2xl font-semibold text-gray-500 dark:text-gray-500">
+              <button @click="scrollToTop">Псков Шеврон</button>
+          </div>
           <p class="my-4 text-gray-400 dark:text-gray-400 select-none">Не нашли что искали? Мы изготовим шеврон по вашему дизайну. Для этого заполните форму ниже и мы с вами свяжемся!</p>
 
         </div>
@@ -78,7 +82,7 @@ const sendOrder = async () => {
         </div>
 
         <div class="flex items-center justify-center ">
-          <div class="my-4 w-2/3">
+          <div class="my-4 w-full md:w-2/3">
             <label class="block mb-2 text-sm font-medium text-gray-500" for="user_avatar">Изображение вашего дизайна</label>
             <input @change="onFileChange" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
           </div>
@@ -86,7 +90,7 @@ const sendOrder = async () => {
 
 
 
-        <div class="">
+        <div class="my-4">
           <button @click="sendOrder()" class="bg-gradient-to-br from-sky-700 to-sky-600 px-24 py-2 rounded-3xl font-semibold">Отправить</button>
         </div>
       </div>

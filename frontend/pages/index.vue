@@ -6,12 +6,6 @@
 
   const { data: categories } = await useFetch(`${ config.public.baseURL }s/ct/`)
   const { data: products } = await useFetch(`${ config.public.baseURL }s/prods/`)
-  // const { data: products1 } = await useFetch(`${ config.public.baseURL }s/prods/`)
-  // const { data: products2 } = await useFetch(`${ config.public.baseURL }s/prods/`)
-  // const { data: products3 } = await useFetch(`${ config.public.baseURL }s/prods/`)
-  // const { data: products4 } = await useFetch(`${ config.public.baseURL }s/prods/`)
-  // const { data: products5 } = await useFetch(`${ config.public.baseURL }s/prods/`)
-
 
   const scrollToTop = () => {
       window.scrollTo({ top: 0 })
@@ -44,11 +38,11 @@
       <div class="py-4">
         <div class="flex flex-wrap gap-x-4 gap-y-2 justify-start">
           
-          <nuxt-link :to="{ name: 'index'}" class="bg-gray-700 shadow-lg shadow-black/30 rounded-2xl px-14 py-1">
+          <nuxt-link :to="{ name: 'index'}" class="bg-gray-700 border border-white/10 shadow-lg shadow-black/30 rounded-2xl px-4 py-0.5 md:px-14 md:py-1">
             <p class="text-sm text-gray-100">Все шевроны</p>
           </nuxt-link>
 
-          <nuxt-link :to="{ name: 'index', query: { ct: category.id ,page: 1}}" v-for="category in categories" :key="category.id" class="bg-gray-700 shadow-lg shadow-black/30 rounded-2xl px-12 py-1">
+          <nuxt-link :to="{ name: 'index', query: { ct: category.id ,page: 1}}" v-for="category in categories" :key="category.id" class="bg-gray-700 border border-white/10 shadow-lg shadow-black/30 rounded-2xl px-4 py-0.5 md:px-14 md:py-1">
             <p class="text-sm text-gray-100">{{ category.title }} </p>
           </nuxt-link>
 
@@ -92,7 +86,7 @@
             <div v-for="product in products.results" :key="product.id">
               <div class="w-full md:max-w-sm border rounded-lg shadow-lg shadow-black/30 bg-gray-800 border-gray-700">
                 
-                <nuxt-link :to="{ name: 'prod-id', params: { id: product.id}}">
+                <nuxt-link :to="{ name: 'prod-id', params: { id: product.id}}" class="min-h-[290px] border-b border-white">
                   <img v-if="product.product_images.length > 0" class=" rounded-t-lg select-none" :src="product.product_images[0].image" alt="product image" />
                   <div v-else class=" rounded-t-lg h-[312px]"></div>
                 </nuxt-link>
