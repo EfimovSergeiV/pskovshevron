@@ -36,7 +36,7 @@ export default defineNuxtConfig({
   ],
 
   yandexMetrika: {
-    id: 'G-94554922'
+    id: '94554922'
   },
 
   pinia: {
