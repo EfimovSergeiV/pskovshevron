@@ -32,7 +32,12 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
+    '@artmizu/yandex-metrika-nuxt',
   ],
+
+  yandexMetrika: {
+    id: 'G-94554922'
+  },
 
   pinia: {
     autoImports: [
