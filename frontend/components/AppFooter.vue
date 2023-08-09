@@ -51,6 +51,7 @@ const sendOrder = async () => {
           <div class="flex justify-center items-center text-2xl font-semibold text-gray-500 dark:text-gray-500">
               <button @click="scrollToTop">Псков Шеврон</button>
           </div>
+
           <p class="my-4 text-gray-400 dark:text-gray-400 select-none">Не нашли что искали? Мы изготовим шеврон по вашему дизайну. Для этого заполните форму ниже и мы с вами свяжемся!</p>
 
         </div>
@@ -96,7 +97,10 @@ const sendOrder = async () => {
       </div>
 
       <div class="flex items-center justify-center py-4">
-        <p class="text-xs mdi mdi-copyright"> PskovShevron.ru | 2023</p>
+        <p class="text-xs mdi mdi-copyright"> PskovShevron.ru<span class="mx-2">|</span></p>
+        <div class="flex justify-center items-center text-xs text-gray-100">
+          <a href="mailto:zakaz@pskovshevron.ru">zakaz@pskovshevron.ru</a>
+        </div>
       </div>
 
     </footer>

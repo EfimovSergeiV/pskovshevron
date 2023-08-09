@@ -12,6 +12,7 @@ from rest_framework.parsers import FileUploadParser
 from shop.models import ProductModel, CategoryModel, OrderModel
 from shop.serializers import ProductSerializer, CategorySerializer, OrderSerializer
 
+from main.utils import send_alert_to_agent
 
 
 class MainPageView(APIView):
@@ -103,7 +104,7 @@ class OrderView(APIView):
             order = serializer.save()
             if filename:
                 OrderModel.objects.filter(id=order.id).update(image_for_custom=filename)
-
+            send_alert_to_agent("""Новый заказ https://api.pskovshevron.ru/admin/shop/ordermodel/""")
             return Response(status=status.HTTP_201_CREATED)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)

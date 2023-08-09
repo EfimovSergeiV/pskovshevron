@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from main.conf import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,13 +20,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-34h_)kck^^e-rubl5iesbsgv^id&5^*!v&+3f$)tk@o3ca$n$o'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
-ALLOWED_HOSTS = ['api.pskovshevron.ru']
 
 
 # Application definition
@@ -87,16 +83,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'pskovshevron_db',
-        'USER': 'pskovshevron_user',
-        'PASSWORD': '3MhnUSQ%mkDi',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
+
 
 
 # Password validation
