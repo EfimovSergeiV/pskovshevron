@@ -47,12 +47,12 @@ class ImageProductModel(models.Model):
     """ Модель изображения товара """
 
     image = ResizedImageField(
-        size = [800, 800],
+        size = [340, 340],
         verbose_name="",
         crop = ['middle', 'center'],
         upload_to='product/images/',
         help_text="Изображение товара",
-        quality=100,
+        quality=90,
         default='product/images/default.webp',
         force_format='WEBP',
     )
