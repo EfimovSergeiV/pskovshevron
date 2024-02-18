@@ -10,24 +10,24 @@
   })
 
 
-  onMounted(() => {
-    if ("geolocation" in navigator) {
-      /* местоположение доступно */
-      navigator.geolocation.getCurrentPosition(position => {
-        let location = {
-          "latitude": position.coords.latitude, 
-          "longitude": position.coords.longitude 
-        }
+  // onMounted(() => {
+  //   if ("geolocation" in navigator) {
+  //     /* местоположение доступно */
+  //     navigator.geolocation.getCurrentPosition(position => {
+  //       let location = {
+  //         "latitude": position.coords.latitude, 
+  //         "longitude": position.coords.longitude 
+  //       }
 
-        // shopStore.sendCoordinates(location)
+  //       // shopStore.sendCoordinates(location)
 
-        // this.sendCoordinates(location)
-      });
-    } else {
-      /* местоположение НЕ доступно */
-    }
+  //       // this.sendCoordinates(location)
+  //     });
+  //   } else {
+  //     /* местоположение НЕ доступно */
+  //   }
 
-  })
+  // })
 
   const client = ref({
     name: null,

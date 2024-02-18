@@ -87,7 +87,7 @@
               <div class="w-full md:max-w-sm border rounded-lg shadow-lg shadow-black/30 bg-gray-800 border-gray-700">
                 
                 <nuxt-link :to="{ name: 'prod-id', params: { id: product.id}}" class="min-h-[290px] border-b border-white">
-                  <img v-if="product.product_images.length > 0" class=" rounded-t-lg select-none" :src="product.product_images[0].image" alt="product image" />
+                  <img v-if="product.product_images.length > 0" class=" rounded-t-lg w-full select-none" :src="product.product_images[0].image" alt="product image" />
                   <div v-else class=" rounded-t-lg h-[312px]"></div>
                 </nuxt-link>
 
