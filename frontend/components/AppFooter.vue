@@ -1,6 +1,7 @@
 <script setup>
 const config = useRuntimeConfig()
 const shopStore = useShopStore()
+const props = defineProps(['contacts',])
 
 const client = ref({
   name: null,
@@ -12,6 +13,8 @@ const onFileChange = (event) => {
   file.value = event.target.files[0]
   console.log(event)
 }
+
+const currentData = new Date().getFullYear()
 
 const sendOrder = async () => {
     if ( ( client.value.name ) && ( client.value.contact ) && ( file.value ) ) {
@@ -96,10 +99,11 @@ const sendOrder = async () => {
         </div>
       </div>
 
-      <div class="flex items-center justify-center py-4">
-        <p class="text-xs mdi mdi-copyright"> PskovShevron.ru<span class="mx-2">|</span></p>
+      <div class="flex items-center justify-center py-4 gap-1">
+        <p class="text-xs text-gray-100 mdi mdi-copyright">{{ currentData }} </p>
+        <p class="text-xs"> PskovShevron.ru<span class="mx-2">|</span></p>
         <div class="flex justify-center items-center text-xs text-gray-100">
-          <a href="mailto:zakaz@pskovshevron.ru">zakaz@pskovshevron.ru</a>
+          <a href="mailto:zakaz@pskovshevron.ru">{{ props.contacts.email }}</a>
         </div>
       </div>
 

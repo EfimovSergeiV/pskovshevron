@@ -53,7 +53,7 @@
       <div class="grid grid-cols-1 gap-4 md:flex items-start">
         
         <div class="">
-          <img :src="product.product_images[0].image" class="rounded-md md:w-[20rem] lg:w-[30rem] border border-white/20 shadow-lg shadow-black/30" />
+          <img :src="product.product_images[0].image" class="rounded-md w-full md:w-[20rem] lg:w-[30rem] border border-white/20 shadow-lg shadow-black/30" />
         </div>
 
         <div class=" w-full">

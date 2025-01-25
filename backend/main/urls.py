@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path, include
 from shop.views import MainPageView
+from main.views import ContactsView
 
 urlpatterns = [
     path('', MainPageView.as_view()),
     path('admin/', admin.site.urls),
+    path('contacts/', ContactsView.as_view()),
     path('s/', include('shop.urls')),
 ]
 

@@ -1,8 +1,11 @@
 <script setup>
   import { initFlowbite } from 'flowbite'
   import { Modal } from 'flowbite'
-
+  
   const config = useRuntimeConfig()
+
+  const { data: contacts } = await useFetch(`${ config.public.baseURL }contacts/`)
+
   const shopStore = useShopStore()
   // initialize components based on data attribute selectors
   onMounted(() => {
@@ -105,9 +108,9 @@
     </div>
 
 
-    <AppHeader/>
+    <AppHeader :contacts="contacts" />
     <slot />
-    <AppFooter />
+    <AppFooter :contacts="contacts" />
 
 
     <div id="cartmodal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
