@@ -38,7 +38,7 @@
             </div>
 
             <div class="">
-              <div class="flex items-center justify-end gap-2">
+              <div class="flex flex-wrap items-center justify-end gap-2">
                 
                 <a v-if="props.contacts.email" :href="`mailto:${props.contacts.email}`" target="_blank" class="bg-gradient-to-br from-sky-700 to-sky-600 rounded-3xl px-4 py-1.5">
                   <p class="text-center font-semibold">
