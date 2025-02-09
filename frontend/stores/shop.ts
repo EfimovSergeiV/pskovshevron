@@ -43,7 +43,6 @@ export const useShopStore = defineStore('ShopStore', {
       },
 
       clearProducts() {
-        console.log('dsfgdkgkdjfghjkdfhkj')
         this.cart = []
       },
 

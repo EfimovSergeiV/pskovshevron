@@ -1,6 +1,6 @@
 <script setup>
   import { initFlowbite } from 'flowbite'
-  import { Modal } from 'flowbite'
+
   
   const config = useRuntimeConfig()
 
@@ -140,7 +140,7 @@
                     <div v-else class="w-full">
                       <div class="text-gray-700">
 
-                        <div class="grid gap-2 px-1 ">
+                        <div v-if="shopStore.cart.length > 0" class="grid grid-cols-1 gap-2 px-1 ">
                           <transition-group tag="div" name="fade">
                             <div v-for="product in shopStore.cart" :key="product.id" class="my-4">
                               <div class="flex items-center gap-2">
@@ -152,7 +152,7 @@
                                 </div>
                                 <div class="flex justify-center w-32">
                                   <button  @click="shopStore.changeQuantity(product, 'del')" class="mdi mdi-minus cursor-pointer"></button>
-                                  <div class="mx-2"><p>{{ product.quantity }}</p></div>
+                                  <div class="mx-2"><p class="">{{ product.quantity }}</p></div>
                                   <button @click="shopStore.changeQuantity(product, 'add')" class="mdi mdi-plus cursor-pointer"></button>
                                 </div>
 
@@ -165,6 +165,10 @@
                               
                             </div>
                           </transition-group>
+                        </div>
+
+                        <div v-else class="flex items-center justify-center py-6">
+                          <p class="">Тут ничего нет</p>
                         </div>
 
 

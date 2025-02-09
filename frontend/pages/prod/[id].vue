@@ -17,7 +17,12 @@
     twitterCard: product.value.product_images[0].image,
   })
 
+  const imageOption = ref(0)
+
+
 </script>
+
+
 
 <template>
   <div class="min-h-screen flex items-center py-8 select-none">
@@ -53,7 +58,13 @@
       <div class="grid grid-cols-1 gap-4 md:flex items-start">
         
         <div class="">
-          <img :src="product.product_images[0].image" class="rounded-md w-full md:w-[20rem] lg:w-[30rem] border border-white/20 shadow-lg shadow-black/30" />
+          <img :src="product.product_images[imageOption].image" class="rounded-md w-full md:w-[20rem] lg:w-[30rem] border border-white/20 shadow-lg shadow-black/30" />
+
+          <div v-if="product.product_images.length > 1" class="flex flex-wrap items-center gap-2 mt-4">
+            <div v-for="(image, index) in product.product_images" :key="image.id">
+              <button @click="imageOption = index" class="bg-gray-700 border border-white/10 shadow-lg shadow-black/30 rounded-2xl px-4 py-0.5 text-sm">Вариант {{ index + 1 }}</button>
+            </div>
+          </div>
         </div>
 
         <div class=" w-full">
@@ -72,10 +83,9 @@
                   <div class="flex items-center gap-2">
                     <p class="text-2xl font-semibold">{{ product.price }}</p>
                     <div class=" mdi mdi-24px mdi-currency-rub"></div>
-                  </div>
-                  
+                  </div>                  
                                   
-                  <button @click="shopStore.addProduct(product)" class="text-white shadow-lg shadow-black/30 uppercase font-semibold bg-gradient-to-br from-sky-700 to-sky-600 focus:ring-0 focus:outline-none focus:ring-blue-300/0 rounded-lg text-sm w-44 py-3 text-center transition-all">
+                  <button @click="shopStore.addProduct({...product, product_images: [product.product_images[imageOption]],})" data-modal-target="cartmodal" data-modal-toggle="cartmodal"  class="text-white shadow-lg shadow-black/30 uppercase font-semibold bg-gradient-to-br from-sky-700 to-sky-600 focus:ring-0 focus:outline-none focus:ring-blue-300/0 rounded-lg text-sm w-44 py-3 text-center transition-all">
                     <transition name="fade" mode="out-in">
                       <div v-if="shopStore.productInCart(product.id)" class="">
                         <p class="">В корзине</p>
@@ -85,6 +95,7 @@
                       </div>
                     </transition>
                   </button>
+
                 
                 </div>
               </div>
@@ -116,7 +127,7 @@
 
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
-        <div class="" v-for="prod in related" :key="prod.id">
+        <div v-for="prod in related" :key="prod.id">
         
           <div class="border rounded-lg shadow-lg shadow-black/30 bg-gray-800 border-gray-700">
             <div class="flex items-center gap-1">
@@ -125,6 +136,8 @@
               </nuxt-link>
               <div class="px-2 w-[26rem]">
                 <div class="grid grid-cols-1 content-between h-full gap-4">
+                  
+                  <!-- warn Hydration  -->
                   <div class="py-1">
                     <nuxt-link :to="{ name: 'prod-id', params: { id: prod.id}}">
                       <p class="text-xs">{{ prod.title }}</p>
@@ -132,6 +145,7 @@
                   </div>
                   <div class="flex items-end gap-4 justify-end">
 
+                    <!-- warn Hydration  -->
                     <div class="flex gap-1 items-center">
                       <div class=" mdi mdi-16px mdi-currency-rub"></div>
                       <p class="text-sm font-semibold">{{ prod.price }}</p>
